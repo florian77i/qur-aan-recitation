@@ -1,20 +1,35 @@
+import { useEffect,useState } from "react";
 import Chapters from "./Chapters";
 import Player from "./Player";
 import Reciter from "./Reciter";
+import axios from 'axios'
+import { FaQuran } from "react-icons/fa";
 const Home = () => {
+  const [reciters,setReciters] = useState([])
+
+  useEffect (()=> {
+    async function fetchData(){
+    const {
+      data :{reciters},
+    }= await axios.get('https://mp3Quran.net/api/_english.php')
+        setReciters(reciters)
+      }
+      fetchData()
+    })
+    console.log(reciters);
   return (
 
-  <div className="bg-orange-100  h-screen shadow-md rounded flex mx-16 my-16  overflow-scroll scroll-smooth" >
+  <div className="bg-orange-100  max-h-screen shadow-md rounded flex mx-16 my-16 " >
       
-    <sidebar  className='w-60 h-16 bg-sky-200 shadow-lg shadow-gray-400 mr-8 my-16 rounded-lg '>
+    <sidebar  className='w-80 max-h-60 bg-sky-200 shadow-lg shadow-gray-400 max-h-screen mr-2 my-16 rounded-lg overflow-y-scroll  '>
     <Reciter/> 
     </sidebar>
       
-     <main className=" grow bg-sky-900 shadow-lg shadow-gray-400  mr-8 my-16 rounded-lg">
+     <main className=" grow bg-sky-900 shadow-lg shadow-gray-400 max-h-screen mr-2 my-16 rounded-lg overflow-y-scroll scroll-m-2">
         <Player/>
      </main>  
      
-     <sidebar  className='w-40 h-screen bg-primary   shadow-lg shadow-gray-400  my-16 rounded-lg'>
+     <sidebar  className='w-56 max-h-screen bg-primary mr-1   shadow-lg shadow-gray-400  my-16 rounded-md  overflow-y-scroll scroll-m-2'>
      <Chapters/>
     </sidebar> 
    
