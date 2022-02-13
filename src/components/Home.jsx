@@ -35,7 +35,7 @@ const Home = () => {
 
     const reciterHandler  = (reciter) =>{
       console.log(reciter.id)
-      setReciterDetail(reciter.id)
+      setReciterDetail(reciter)
     }
     const chapterHandler  = (chapter) => {
       console.log(chapter)
@@ -54,7 +54,10 @@ const Home = () => {
     </main>
       
      <main className=" grow bg-sky-900 shadow-lg shadow-gray-400 max-h-screen mr-2 my-16 rounded-lg overflow-y-scroll scroll-m-2">
-        <Player/>
+        <Player
+          reciterDetail={reciterDetail}
+          chapterDetail={chapterDetail}
+        />
      </main>  
      
      <main  className='w-56 max-h-screen bg-primary mr-1   shadow-lg shadow-gray-400  my-16 rounded-md  overflow-y-scroll scroll-m-2'>
